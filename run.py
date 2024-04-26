@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # Preamble: take care of all gear-typical activities.
     context = flywheel.GearContext()
     #get_custom_logger is defined in utils.py
-    context.log = log.get_custom_logger('[flywheel:fsl-anat]')
+    context.log = log.get_custom_logger('[flywheel:fslmaths]')
 
     # grab environment for gear
     with open('/tmp/gear_environ.json', 'r') as f:
@@ -34,7 +34,7 @@ if __name__ == '__main__':
         # Raises Exception on fail
         args.validate(context)
         # Build command-line string for subprocess to execute
-        context.custom_dict['command'] = ['fsl_anat']
+        context.custom_dict['command'] = ['fslmaths']
 
         args.execute(context)
         
@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     except Exception as e:
         context.log.error(e)
-        context.log.error('Cannot execute FLS Anat commands.')
+        context.log.error('Cannot execute FSLMATHS commands.')
         os.sys.exit(1)
 
     finally:

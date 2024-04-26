@@ -64,20 +64,6 @@ def validate(context):
     if not op.exists(params['i']):
         raise Exception('Input File Not Found: ' + params['i'])
 
-    if ('betfparam' in keys) and ('nononlinreg' in keys):
-        if(params['betfparam'] > 0.0):
-            raise Exception(
-                'For betfparam values > zero, \
-                nonlinear registration is required.')
-
-    if ('s' in keys):
-        if params['s'] < 2:
-            log.warning(
-                'The value of ' + str(params['s']) +
-                ' for -s may cause a singular matrix.' +
-                ' Setting to default value of 10.'
-            )
-            params['s'] = 10
 
 
 def BuilCommandList(command, ParamList):
@@ -110,7 +96,7 @@ def BuilCommandList(command, ParamList):
 def execute(context,dry_run=False):
     command = context.custom_dict['command']
     command = BuilCommandList(command, context.custom_dict['params'])
-    context.log.info('FSL_Anat Command:'+' '.join(command))
+    context.log.info('FSLMATHS Command:'+' '.join(command))
     if not dry_run:
         environ = context.custom_dict['environ']
         result = sp.run(command, stdout=sp.PIPE, stderr=sp.PIPE,

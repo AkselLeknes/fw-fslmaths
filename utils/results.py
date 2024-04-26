@@ -6,7 +6,7 @@ def Zip_Results(context):
     # If the output/result.anat path exists, zip regardless of exit status
     # Clean input_file_basename to lack esc chars and extension info
     input_file_basename = context.custom_dict['input_file_basename']
-    result_dir = context.custom_dict['result_dir']+'.anat'
+    result_dir = context.custom_dict['result_dir']+'.maths'
     if op.exists(op.join(context.work_dir, result_dir)):
         context.log.info(
             'Zipping '+op.join(context.work_dir, result_dir) + ' directory.'
